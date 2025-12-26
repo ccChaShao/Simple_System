@@ -5,4 +5,9 @@ using UnityEngine.Events;
 
 namespace System.RedDot.RunTime
 {
+    public enum RedDotType
+    {
+        Dot, // Dot shape
+        Number // Number
+    }
 }

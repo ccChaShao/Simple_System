@@ -6,9 +6,12 @@ using UnityEngine.Events;
 
 namespace System.RedDot.RunTime
 {
-    public class RedDotUpdate : UnityEvent<RedNode> { }
+    public class RedDotUpdate : UnityEvent<RedDotNode> { }
         
-    public class RedNode
+    /// <summary>
+    /// 红点节点类——处理节点的基本数据
+    /// </summary>
+    public class RedDotNode
     {
         public string name { get; private set; }
     
@@ -17,31 +20,31 @@ namespace System.RedDot.RunTime
         public int count => m_Count;
 
         // 父节点
-        private RedNode m_ParentNode;
-        public RedNode parentNode => m_ParentNode;
+        private RedDotNode _mParentDotNode;
+        public RedDotNode ParentDotNode => _mParentDotNode;
     
         // 子节点表
-        private Dictionary<string, RedNode> m_ChilNodeDic = new();
-        public Dictionary<string, RedNode> chilNodeDic => m_ChilNodeDic;
+        private Dictionary<string, RedDotNode> m_ChilNodeDic = new();
+        public Dictionary<string, RedDotNode> chilNodeDic => m_ChilNodeDic;
 
         // 更新回调
         private RedDotUpdate m_OnRedDotUpdate = new();
         public RedDotUpdate onRedDotUpdate => m_OnRedDotUpdate;
         
-        public int level => m_ParentNode == null ? 0 : m_ParentNode.level + 1;
+        public int level => _mParentDotNode == null ? 0 : _mParentDotNode.level + 1;
     
         public bool isLeaf => m_ChilNodeDic == null || m_ChilNodeDic.Count <= 0;
 
-        public RedNode(string name)
+        public RedDotNode(string name)
         {
             this.name = name;
-            this.m_ParentNode = null;
+            this._mParentDotNode = null;
         }
 
-        public RedNode(string name, RedNode parentNode)
+        public RedDotNode(string name, RedDotNode parentDotNode)
         {
             this.name = name;
-            this.m_ParentNode = parentNode;
+            this._mParentDotNode = parentDotNode;
         }
 
         /// <summary>
@@ -49,16 +52,16 @@ namespace System.RedDot.RunTime
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public RedNode AddChildNode(string name)
+        public RedDotNode AddChildNode(string name)
         {
-            RedNode redNode;
-            if (!m_ChilNodeDic.TryGetValue(name, out redNode))
+            RedDotNode redDotNode;
+            if (!m_ChilNodeDic.TryGetValue(name, out redDotNode))
             {
-                redNode = new(name);
-                m_ChilNodeDic[name] = redNode;
+                redDotNode = new(name);
+                m_ChilNodeDic[name] = redDotNode;
             }
 
-            return redNode;
+            return redDotNode;
         }
 
         /// <summary>
@@ -75,17 +78,17 @@ namespace System.RedDot.RunTime
         /// 获取所有父节点
         /// </summary>
         /// <returns></returns>
-        public List<RedNode> GetAllParentNodes()
+        public List<RedDotNode> GetAllParentNodes()
         {
             if (!isLeaf)
                 return null;
             
-            List<RedNode> result = new();
-            RedNode parentNode = m_ParentNode;
-            while (parentNode != null)
+            List<RedDotNode> result = new();
+            RedDotNode parentDotNode = _mParentDotNode;
+            while (parentDotNode != null)
             {
-                result.Add(parentNode);
-                parentNode = parentNode.m_ParentNode;
+                result.Add(parentDotNode);
+                parentDotNode = parentDotNode._mParentDotNode;
             }
 
             return result;
@@ -149,9 +152,9 @@ namespace System.RedDot.RunTime
         private void NotifyUpdate()
         {
             m_OnRedDotUpdate?.Invoke(this);
-            if (m_ParentNode != null)
+            if (_mParentDotNode != null)
             {
-                m_ParentNode.RecalculatetCount();
+                _mParentDotNode.RecalculatetCount();
             }
         }
     }
