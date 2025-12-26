@@ -1,0 +1,10 @@
+-- @Author: Charlie
+-- @Email: 203981473@qq.com
+-- @Description: DRedDotType enum for defining types of RedDot indicators.
+-- @Date: 2025-04-17 11:04:22
+-- @Modify:
+
+DRedDotType = {
+    Dot = 1, -- Dot shape
+    Number = 2 -- Number
+}

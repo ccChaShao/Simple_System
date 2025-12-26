@@ -1,0 +1,51 @@
+-- @Author: Charlie
+-- @Email: 203981473@qq.com
+-- @Description: DRedDotAbstractView class for managing RedDot view updates and callbacks.
+-- @Date: 2025-04-17 11:04:22
+-- @Modify:
+
+-- 导入BaseClass
+local BaseClass = require("BaseClass")
+
+DRedDotAbstractView = {}
+setmetatable(DRedDotAbstractView,BaseClass)
+DRedDotAbstractView.__index = DRedDotAbstractView
+
+function DRedDotAbstractView:new()
+    local self = BaseClass:new() 
+    setmetatable(self, DRedDotAbstractView)
+    self.Type = nil
+    self.Key = nil
+    self.Number = nil
+    self.m_GetDRedDotModule = nil
+    self.m_DRedDotNode = nil
+    self.OnUpdateViewEvent = nil
+    return self
+end
+
+function DRedDotAbstractView:Initialize(module, key, type, callback)
+    self.Key = key
+    self.Type = type
+    self.m_GetDRedDotModule = module
+    self.m_DRedDotNode = self.m_GetDRedDotModule:GetRedDotNode(self.Key)
+    self.OnUpdateViewEvent = callback
+end
+
+function DRedDotAbstractView:UpdateType(type)
+    if type == self.Type then return end
+    self.Type = type
+    if self.OnUpdateViewEvent then
+        self.OnUpdateViewEvent(self.m_DRedDotNode)
+    end
+end
+
+function DRedDotAbstractView:OnEnter()
+    if self.OnUpdateViewEvent then
+        self.OnUpdateViewEvent(self.m_DRedDotNode)
+    end
+    self.m_GetDRedDotModule:AddRedDotNodeViewCallBack(self.m_DRedDotNode, self.OnUpdateViewEvent)
+end
+
+function DRedDotAbstractView:OnExit()
+    self.m_GetDRedDotModule:RemoveRedDotNodeViewCallBack(self.m_DRedDotNode, self.OnUpdateViewEvent)
+end

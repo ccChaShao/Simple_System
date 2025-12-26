@@ -1,0 +1,52 @@
+-- @Author: Charlie
+-- @Email: 203981473@qq.com
+-- @Description: BaseClass template for creating Lua classes.
+-- @Date: 2025-04-17 11:04:22
+-- @Modify:
+
+BaseClass = {}
+BaseClass.__index = BaseClass
+
+-- Constructor
+function BaseClass:new()
+    local self={}
+    setmetatable(self, BaseClass)
+    return self
+end
+
+-- Initialization method to be overridden by derived classes
+function BaseClass:Initialize()
+    -- Default initialization logic
+end
+
+-- Destructor
+function BaseClass:Destroy()
+    self:Cleanup()
+end
+
+-- Cleanup method to be overridden by derived classes
+function BaseClass:Cleanup()
+    -- Default cleanup logic
+end
+
+-- Method to check if the object is valid
+function BaseClass:IsValid()
+    return self ~= nil
+end
+
+-- Method to print the object's state (for debugging)
+function BaseClass:PrintState()
+    print("BaseClass state:")
+    for k, v in pairs(self) do
+        print(k, v)
+    end
+end
+
+-- Method to clone the object
+function BaseClass:Clone()
+    local clone = setmetatable({}, BaseClass)
+    for k, v in pairs(self) do
+        clone[k] = v
+    end
+    return clone
+end

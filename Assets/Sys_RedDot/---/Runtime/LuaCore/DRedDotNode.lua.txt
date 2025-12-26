@@ -1,0 +1,112 @@
+-- @Author: Charlie
+-- @Email: 203981473@qq.com
+-- @Description: DRedDotNode class for managing RedDot nodes and their relationships.
+-- @Date: 2025-04-17 11:04:22
+-- @Modify:
+
+-- 导入BaseClass
+local BaseClass = require("BaseClass")
+
+DRedDotNode = {}
+setmetatable(DRedDotNode,BaseClass)
+DRedDotNode.__index = DRedDotNode
+
+function DRedDotNode:new(name, parent)
+    local self =BaseClass:new()
+    setmetatable(self, DRedDotModule)
+    self.Name = name
+    self.m_Count = 0
+    self.m_Parent = parent
+    self.m_Children = {}
+    self.OnUpdateViewEvent = nil
+    return self
+end
+
+function DRedDotNode:GetFullKey()
+    local result = self.Name
+    local node = self.m_Parent
+    while node do
+        result = node.Name .. "_" .. result
+        node = node.m_Parent
+    end
+    return result
+end
+
+function DRedDotNode:AddChild(name)
+    local node = self.m_Children[name]
+    if not node then
+        node = DRedDotNode:new(name, self)
+        self.m_Children[name] = node
+    end
+    return node
+end
+
+function DRedDotNode:RemoveChild(name)
+    self.m_Children[name] = nil
+end
+
+function DRedDotNode:GetAllAffectedParentNodes()
+    if not self.IsLeaf then return nil end
+    local list = {}
+    local node = self.m_Parent
+    while node do
+        table.insert(list, node)
+        node = node.m_Parent
+    end
+    return list
+end
+
+function DRedDotNode:UpdateRedDotDelay(count)
+    if self.IsLeaf then
+        self.m_Count = count
+    else
+        local childrenCount = 0
+        for _, node in pairs(self.m_Children) do
+            childrenCount = childrenCount + node.m_Count
+        end
+        self.m_Count = childrenCount
+    end
+    if self.OnUpdateViewEvent then
+        self.OnUpdateViewEvent(self)
+    end
+end
+
+function DRedDotNode:UpdateRedDotCount(count)
+    if not self.IsLeaf then return end
+    if self.m_Count ~= count then
+        self.m_Count = count
+        if self.OnUpdateViewEvent then
+            self.OnUpdateViewEvent(self)
+        end
+        if self.m_Parent then
+            self.m_Parent:UpdateRedDot()
+        end
+    end
+end
+
+function DRedDotNode:ClearRedDotCountSilently()
+    self.m_Count = 0
+    if self.OnUpdateViewEvent then
+        self.OnUpdateViewEvent(self)
+    end
+end
+
+function DRedDotNode:UpdateRedDot()
+    local childrenCount = 0
+    for _, node in pairs(self.m_Children) do
+        childrenCount = childrenCount + node.m_Count
+    end
+    if self.m_Count ~= childrenCount then
+        self.m_Count = childrenCount
+        self:NotifyUp()
+    end
+end
+
+function DRedDotNode:NotifyUp()
+    if self.OnUpdateViewEvent then
+        self.OnUpdateViewEvent(self)
+    end
+    if self.m_Parent then
+        self.m_Parent:UpdateRedDot()
+    end
+end
