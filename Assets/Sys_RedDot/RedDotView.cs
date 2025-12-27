@@ -1,3 +1,5 @@
+using UnityEngine.Events;
+
 namespace System.RedDot.RunTime
 {
     /// <summary>
@@ -10,9 +12,9 @@ namespace System.RedDot.RunTime
 
         private RedDotNode m_ReddotNode;
         private RedDotModule m_RedDotModule;
-        private RedDotUpdate m_OnRedDotUpdate;
+        private UnityAction<RedDotNode> m_OnRedDotUpdate;
 
-        public void SetData(RedDotModule module, string redDotKey, RedDotType redDotType, RedDotUpdate onRedDotUpdate)
+        public void SetData(RedDotModule module, string redDotKey, RedDotType redDotType, UnityAction<RedDotNode> onRedDotUpdate)
         {
             this.m_RedDotModule = module;
             this.redDotKey = redDotKey;

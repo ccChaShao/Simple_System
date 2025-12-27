@@ -13,7 +13,7 @@ namespace System.RedDot.RunTime
     /// </summary>
     public class RedDotNode
     {
-        public string name { get; private set; }
+        public string path { get; private set; }
     
         // 红点数量
         private int m_Count;
@@ -35,30 +35,30 @@ namespace System.RedDot.RunTime
     
         public bool isLeaf => m_ChilNodeDic == null || m_ChilNodeDic.Count <= 0;
 
-        public RedDotNode(string name)
+        public RedDotNode(string path)
         {
-            this.name = name;
+            this.path = path;
             this._mParentDotNode = null;
         }
 
-        public RedDotNode(string name, RedDotNode parentDotNode)
+        public RedDotNode(string path, RedDotNode parentDotNode)
         {
-            this.name = name;
+            this.path = path;
             this._mParentDotNode = parentDotNode;
         }
 
         /// <summary>
         /// 添加子节点
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="path"></param>
         /// <returns></returns>
-        public RedDotNode AddChildNode(string name)
+        public RedDotNode AddChildNode(string path)
         {
             RedDotNode redDotNode;
-            if (!m_ChilNodeDic.TryGetValue(name, out redDotNode))
+            if (!m_ChilNodeDic.TryGetValue(path, out redDotNode))
             {
-                redDotNode = new(name);
-                m_ChilNodeDic[name] = redDotNode;
+                redDotNode = new(path);
+                m_ChilNodeDic[path] = redDotNode;
             }
 
             return redDotNode;
@@ -67,11 +67,11 @@ namespace System.RedDot.RunTime
         /// <summary>
         /// 移除子节点
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="path"></param>
         /// <returns></returns>
-        public bool RemoveChildNode(string name)
+        public bool RemoveChildNode(string path)
         {
-            return m_ChilNodeDic.Remove(name);
+            return m_ChilNodeDic.Remove(path);
         }
 
         /// <summary>
