@@ -21,9 +21,22 @@ public class Manager : MonoBehaviour
         InitModule();
     }
 
+    private void Update()
+    {
+        UpdateModule();
+    }
+
     private void InitModule()
     {
         redDotModule = new RedDotModule();
         redDotModule.Initalize(redDotPrefab, "_");
+    }
+
+    private void UpdateModule()
+    {
+        if (redDotModule != null)
+        {
+            redDotModule.Update();
+        }
     }
 }
