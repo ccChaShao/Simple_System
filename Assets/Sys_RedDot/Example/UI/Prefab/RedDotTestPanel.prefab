@@ -2440,21 +2440,27 @@ MonoBehaviour:
   testData:
   - path: root
     type: 1
+    anchorPreset: 2
     rectTransform: {fileID: 4923606517506263986}
   - path: root_email
     type: 1
+    anchorPreset: 1
     rectTransform: {fileID: 7879006828454727855}
   - path: root_bag
     type: 1
+    anchorPreset: 1
     rectTransform: {fileID: 2691341404743019842}
   - path: root_message
     type: 1
+    anchorPreset: 1
     rectTransform: {fileID: 6619334134198104765}
   - path: root_email_1
     type: 1
+    anchorPreset: 1
     rectTransform: {fileID: 8524606186621149639}
   - path: root_email_2
     type: 1
+    anchorPreset: 2
     rectTransform: {fileID: 5306098736893055150}
 --- !u!1 &7047577180329732564
 GameObject:

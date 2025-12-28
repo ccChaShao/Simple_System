@@ -55,7 +55,7 @@ public class Manager : MonoBehaviour
             GameObject ins = Instantiate(redDotPrefab, dotBindData.rectTransform);
             item = ins.GetComponent<RedDotItem>();
         }
-        item.SetData(dotBindData.path, dotBindData.type);
+        item.SetData(dotBindData.path, dotBindData.type, dotBindData.anchorPreset);
         item.RefreshView(node);
     }
 }

@@ -11,12 +11,21 @@ namespace System.RedDot.RunTime
         Number // Number
     }
     
+    public enum RedDotAnchorPreset
+    {
+        TopLeft,
+        TopRight,
+        MiddleCenter,
+        BottomLeft, 
+        BottomRight
+    }
     
     [Serializable]
     public class RedDotBindData
     {
         public string path;
         public RedDotType type = RedDotType.Dot;
+        public RedDotAnchorPreset anchorPreset = RedDotAnchorPreset.TopRight;
         public RectTransform rectTransform;
 
         public RedDotBindData(string path, RectTransform rectTransform)
