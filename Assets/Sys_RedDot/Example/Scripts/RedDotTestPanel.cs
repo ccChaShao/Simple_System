@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.RedDot.RunTime;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -8,13 +9,13 @@ namespace System.RedDot.Example
 {
     public class RedDotTestPanel : MonoBehaviour
     {
-        [BoxGroup("GM")] public string gmPath;
+        [BoxGroup("GM")] public TMP_InputField pathInputField;
         
         [BoxGroup("GM/Add - Dec")] public Button addButton;
 
         [BoxGroup("GM/Add - Dec")] public Button decButton;
         
-        [BoxGroup("GM/Set")] public int setNumber;
+        [BoxGroup("GM/Set")] public TMP_InputField setInputField;
         
         [BoxGroup("GM/Set")] public Button setButton;
         
@@ -55,17 +56,17 @@ namespace System.RedDot.Example
         private void OnAddButtonClick()
         {
 
-            m_RedDotModule.AddOnceRedDotNodeCount(gmPath);
+            m_RedDotModule.AddOnceRedDotNodeCount(pathInputField.text);
         }
 
         private void OnDecButtonClick()
         {
-            m_RedDotModule.DecOnceRedDotNodeCount(gmPath);
+            m_RedDotModule.DecOnceRedDotNodeCount(pathInputField.text);
         }
 
         private void OnSetButtonClick()
         {
-            m_RedDotModule.SetRedDotNodeCount(gmPath, setNumber);
+            m_RedDotModule.SetRedDotNodeCount(pathInputField.text, int.Parse(setInputField.text));
         }
 
         [Button]
