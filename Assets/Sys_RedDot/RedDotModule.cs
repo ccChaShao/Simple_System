@@ -60,6 +60,16 @@ namespace System.RedDot.RunTime
             return m_nodeDic[path];
         }
 
+        public RedDotNode CreateRedDotNode(string path, bool withoutNodify)
+        {
+            RedDotNode node = CreateRedDotNode(path);
+
+            if (!withoutNodify)
+                UpdateAffectedNodes(path);
+
+            return node;
+        }
+
         public RedDotNode CreateRedDotNode(string path)
         {
             if (string.IsNullOrEmpty(path))
@@ -91,14 +101,6 @@ namespace System.RedDot.RunTime
                         newPath = stringBuilder.Append($"_{keys[i + 1]}").ToString();
                         CreateRedDotNode(newPath);
                     }
-                    // // 添加该路径剩余节点
-                    // for (int j = i + 1; j < keys.Length; j++)
-                    // {
-                    //     newPath = stringBuilder.Append(keys[j]).ToString();
-                    //     newNode = new RedDotNode(newPath, parentNode);
-                    //     m_nodeDic[newPath] = newNode;
-                    //     parentNode = newNode;
-                    // }
                     return newNode;
                 }
                 
@@ -117,7 +119,7 @@ namespace System.RedDot.RunTime
             // 记录改动的节点的数量
             m_ChangeLeafNodes[node] = count; 
             
-            // 记录所有脏表现节点
+            // 记录所有受影响的父节点
             List<RedDotNode> affectedNodes = node.GetAllParentNodes();
             if (affectedNodes != null && affectedNodes.Count > 0)
             {
@@ -125,6 +127,20 @@ namespace System.RedDot.RunTime
             }
             
             return true;
+        }
+
+        public void UpdateAffectedNodes(string path)
+        {
+            RedDotNode node = GetRedDotNode(path);
+            if (node == null)
+                return;
+            
+            // 记录所有受影响的父节点
+            List<RedDotNode> affectedNodes = node.GetAllParentNodes();
+            if (affectedNodes != null && affectedNodes.Count > 0)
+            {
+                m_DirtyViewNodes.UnionWith(affectedNodes);
+            }
         }
 
         public bool AddOnceRedDotNodeCount(string path)

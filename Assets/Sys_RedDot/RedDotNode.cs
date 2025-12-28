@@ -132,7 +132,7 @@ namespace System.RedDot.RunTime
         /// <summary>
         /// 通知更新
         /// </summary>
-        private void NotifyUpdate()
+        public void NotifyUpdate()
         {
             m_OnRedDotUpdate?.Invoke(this);
             if (m_ParentDotNode != null)

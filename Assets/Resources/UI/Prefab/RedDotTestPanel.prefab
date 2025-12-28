@@ -236,7 +236,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 905928906071384528}
   - {fileID: 3939371055057643864}
@@ -413,7 +413,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4243976134807734596}
   m_Father: {fileID: 1261771900315914424}
@@ -1575,7 +1575,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5034201684593176157}
   m_Father: {fileID: 1261771900315914424}
@@ -2432,10 +2432,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60062dcb1a74459597d71398c7409509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathInputField: {fileID: 0}
+  pathInputField: {fileID: 4128427595562844795}
   addButton: {fileID: 4902051594569882649}
   decButton: {fileID: 6419130547274525953}
-  setInputField: {fileID: 0}
+  setInputField: {fileID: 5496034120550976906}
   setButton: {fileID: 5840672402425333280}
   testData:
   - path: root
@@ -2485,7 +2485,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1638434892693224512}
   m_Father: {fileID: 1261771900315914424}
@@ -2837,7 +2837,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3764901626767872756}
   m_Father: {fileID: 1261771900315914424}
@@ -3034,7 +3034,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6345246031075796101}
   m_Father: {fileID: 1261771900315914424}
