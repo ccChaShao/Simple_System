@@ -12,7 +12,6 @@ namespace System.RedDot.RunTime
     public class RedDotModule
     {
         public string pattern;
-        public GameObject redDotPrefab;
         
         // 红点表
         private Dictionary<string, RedDotNode> m_nodeDic = new();
@@ -21,9 +20,8 @@ namespace System.RedDot.RunTime
         private Dictionary<RedDotNode, int> m_ChangeLeafNodes = new(); // 叶子节点缓存
         private HashSet<RedDotNode> m_DirtyViewNodes = new(); // 父节点缓存
 
-        public void Initalize(GameObject redDotPrefab, string pattern = "_")
+        public void Initalize(string pattern = "_")
         {
-            this.redDotPrefab = redDotPrefab;
             this.pattern = pattern;
         }
 
@@ -62,22 +60,26 @@ namespace System.RedDot.RunTime
             return m_nodeDic[path];
         }
 
-        public bool CreateRedDotNode(string path)
+        public RedDotNode CreateRedDotNode(string path)
         {
             if (string.IsNullOrEmpty(path))
-                return false;
+                return null;
 
             if (m_nodeDic.ContainsKey(path))
-                return false;
+                return m_nodeDic[path];
             
             string[] keys = SplitAndTrim(path, pattern).ToArray();
+            
+            if (keys.Length <= 0)
+                return null;
             
             StringBuilder stringBuilder = new();
             RedDotNode parentNode = null;
             
             for (int i = 0; i < keys.Length; i++)
             {
-                string newPath = stringBuilder.Append(keys[i]).ToString();
+                string append = i != 0 ? $"_{keys[i]}" : keys[i];
+                string newPath = stringBuilder.Append(append).ToString();
                 if (!m_nodeDic.ContainsKey(newPath))
                 {
                     // 添加该路径节点
@@ -86,12 +88,8 @@ namespace System.RedDot.RunTime
                     // 添加该路径剩余节点
                     if (i < keys.Length - 1)
                     {
-                        newPath = stringBuilder.Append(keys[i + 1]).ToString();
-                        bool addSuc = CreateRedDotNode(newPath);
-                        if (!addSuc)
-                        {
-                            return false;
-                        }
+                        newPath = stringBuilder.Append($"_{keys[i + 1]}").ToString();
+                        CreateRedDotNode(newPath);
                     }
                     // // 添加该路径剩余节点
                     // for (int j = i + 1; j < keys.Length; j++)
@@ -101,13 +99,13 @@ namespace System.RedDot.RunTime
                     //     m_nodeDic[newPath] = newNode;
                     //     parentNode = newNode;
                     // }
-                    return true;
+                    return newNode;
                 }
                 
                 parentNode = m_nodeDic[newPath];
             }
 
-            return false;
+            return null;
         }
 
         public bool SetRedDotNodeCount(string path, int count)
@@ -119,7 +117,7 @@ namespace System.RedDot.RunTime
             // 记录改动的节点的数量
             m_ChangeLeafNodes[node] = count; 
             
-            // 记录所有葬表现节点
+            // 记录所有脏表现节点
             List<RedDotNode> affectedNodes = node.GetAllParentNodes();
             if (affectedNodes != null && affectedNodes.Count > 0)
             {
@@ -127,6 +125,24 @@ namespace System.RedDot.RunTime
             }
             
             return true;
+        }
+
+        public bool AddOnceRedDotNodeCount(string path)
+        {
+            RedDotNode node = GetRedDotNode(path);
+            if (node == null)
+                return false;
+            
+            return SetRedDotNodeCount(path, node.count + 1);
+        }
+
+        public bool DecOnceRedDotNodeCount(string path)
+        {
+            RedDotNode node = GetRedDotNode(path);
+            if (node == null)
+                return false;
+            
+            return SetRedDotNodeCount(path, node.count - 1);
         }
 
         public void AddRedDotNodeViewCallBack(string path, UnityAction<RedDotNode> onRedDotUpdate)

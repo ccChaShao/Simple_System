@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,14 +12,11 @@ namespace System.RedDot.RunTime
     public class RedDotNode
     {
         public string path { get; private set; }
-    
-        // 红点数量
-        private int m_Count;
-        public int count => m_Count;
+        public int count { get; private set; }
 
         // 父节点
-        private RedDotNode _mParentDotNode;
-        public RedDotNode ParentDotNode => _mParentDotNode;
+        private RedDotNode m_ParentDotNode;
+        public RedDotNode parentDotNode;
     
         // 子节点表
         private Dictionary<string, RedDotNode> m_ChilNodeDic = new();
@@ -31,44 +26,28 @@ namespace System.RedDot.RunTime
         private RedDotUpdate m_OnRedDotUpdate = new();
         public RedDotUpdate onRedDotUpdate => m_OnRedDotUpdate;
         
-        public int level => _mParentDotNode == null ? 0 : _mParentDotNode.level + 1;
+        public int level => m_ParentDotNode == null ? 0 : m_ParentDotNode.level + 1;
     
         public bool isLeaf => m_ChilNodeDic == null || m_ChilNodeDic.Count <= 0;
-
-        public RedDotNode(string path)
-        {
-            this.path = path;
-            this._mParentDotNode = null;
-        }
 
         public RedDotNode(string path, RedDotNode parentDotNode)
         {
             this.path = path;
-            this._mParentDotNode = parentDotNode;
+            this.m_ParentDotNode = parentDotNode;
+            parentDotNode?.SetChildNode(this);
         }
 
         /// <summary>
         /// 添加子节点
         /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        public RedDotNode AddChildNode(string path)
+        public void SetChildNode(RedDotNode node)
         {
-            RedDotNode redDotNode;
-            if (!m_ChilNodeDic.TryGetValue(path, out redDotNode))
-            {
-                redDotNode = new(path);
-                m_ChilNodeDic[path] = redDotNode;
-            }
-
-            return redDotNode;
+            m_ChilNodeDic[node.path] = node;
         }
 
         /// <summary>
         /// 移除子节点
         /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
         public bool RemoveChildNode(string path)
         {
             return m_ChilNodeDic.Remove(path);
@@ -84,11 +63,11 @@ namespace System.RedDot.RunTime
                 return null;
             
             List<RedDotNode> result = new();
-            RedDotNode parentDotNode = _mParentDotNode;
+            RedDotNode parentDotNode = this.m_ParentDotNode;
             while (parentDotNode != null)
             {
                 result.Add(parentDotNode);
-                parentDotNode = parentDotNode._mParentDotNode;
+                parentDotNode = parentDotNode.m_ParentDotNode;
             }
 
             return result;
@@ -99,19 +78,23 @@ namespace System.RedDot.RunTime
         /// </summary>
         public void RecalculatetCount()
         {
-            int chilCount = 0;
+            int result = 0;
             
             if (!isLeaf)
             {
                 foreach (var kv in m_ChilNodeDic)
                 {
-                    chilCount += kv.Value.count;
+                    result += kv.Value.count;
                 }
             }
-
-            if (m_Count != chilCount)
+            else
             {
-                m_Count = chilCount;
+                result = count;
+            }
+
+            if (count != result)
+            {
+                count = Math.Clamp(result, 0, 9999);
                 NotifyUpdate();
             }
         }
@@ -124,9 +107,9 @@ namespace System.RedDot.RunTime
             if (!isLeaf)
                 return;
 
-            if (m_Count != count)
+            if (this.count != count)
             {
-                m_Count = count;
+                this.count = Math.Clamp(count, 0, 9999);
                 NotifyUpdate();
             }
         }
@@ -139,9 +122,9 @@ namespace System.RedDot.RunTime
             if (!isLeaf)
                 return;
             
-            if (m_Count != 0)
+            if (count != 0)
             {
-                m_Count = 0;
+                count = 0;
                 NotifyUpdate();
             }
         }
@@ -152,9 +135,9 @@ namespace System.RedDot.RunTime
         private void NotifyUpdate()
         {
             m_OnRedDotUpdate?.Invoke(this);
-            if (_mParentDotNode != null)
+            if (m_ParentDotNode != null)
             {
-                _mParentDotNode.RecalculatetCount();
+                m_ParentDotNode.RecalculatetCount();
             }
         }
     }
