@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Localization;
 using System.Resource;
 using System.Text;
 using UnityEngine;
@@ -39,7 +40,9 @@ namespace System.I18n.RunTime
         public static void Load()
         {
             m_i18nTextDic = new();
-            string srcFilePath = GetSrcFilePath("zh_cn");   //TODO 这里临时用zh_cn作为测试用
+            //TODO 这里应该拿实时的才对，临时DEBUG用默认的。
+            LocalizationSettingItem defaultItem = LocalizationSettings.Instance.defaultLocalizationItem;
+            string srcFilePath = GetSrcFilePath(defaultItem.localizationFile);
             string rawSourceText = LoadRawSourceText(srcFilePath);
             if (rawSourceText != null)
             {

@@ -70,7 +70,6 @@ namespace System.I18n.RunTime
                     keys.Add(key);
                     m_i18nDic[key] = new I18nTextItem(key, value);
                 }
-                
             }
             catch (Exception e)
             {
