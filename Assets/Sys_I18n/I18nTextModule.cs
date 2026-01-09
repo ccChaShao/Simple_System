@@ -8,17 +8,52 @@ namespace System.I18n.RunTime
 {
     public class I18nTextModule
     {
-        public static I18nTextDic i18nTextDic;
-
-        public static void Load()
-        {
+        public const string SRC_ROOT_DIR = "config/i18n";
             
+        private static I18nTextDic m_i18nTextDic;
+        
+        public static I18nTextDic i18nTextDic
+        {
+            get
+            {
+                EnsureLoad();
+                return m_i18nTextDic;
+            }
+        }
+
+        public static void OnTick()
+        {
+            if (m_i18nTextDic != null)
+            {
+                m_i18nTextDic.OnTick();
+            }
         }
         
-        public static string GetSrcFile(string locale)
+        public static void EnsureLoad()
         {
-            // return SrcRootDir + $"/{locale}/texts.bytes";
-            return string.Empty;
+            if (m_i18nTextDic == null)
+            {
+                Load();
+            }
+        }
+        public static void Load()
+        {
+            m_i18nTextDic = new();
+            string srcFilePath = GetSrcFilePath("zh_cn");   //TODO 这里临时用zh_cn作为测试用
+            string rawSourceText = LoadRawSourceText(srcFilePath);
+            if (rawSourceText != null)
+            {
+                bool loadSuc = m_i18nTextDic.LoadDicFromStringData(srcFilePath);
+            }
+            else
+            {
+                Debug.LogError("[Load] : I18nTextModule LoadRawSourceText failed !");
+            }
+        }
+        
+        public static string GetSrcFilePath(string locale)
+        {
+            return SRC_ROOT_DIR + $"/{locale}/texts.bytes";
         }
 
         public static string LoadRawSourceText(string path)
@@ -31,6 +66,18 @@ namespace System.I18n.RunTime
             }
 
             return String.Empty;
+        }
+
+        public static string GetText(string key)
+        {
+            EnsureLoad();
+            return m_i18nTextDic[key];
+        }
+
+        public static void SetText(string key, string value)
+        {
+            EnsureLoad();
+            m_i18nTextDic[key] = value;
         }
     }
 }

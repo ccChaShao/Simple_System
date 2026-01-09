@@ -27,12 +27,19 @@ namespace System.I18n.RunTime
         // 后续用于清理闲置字符
         private float m_gcTickTime = 0.0f;
 
+        // 定义一个字符串索引器
+        public string this[string key]
+        {
+            get => Get(key);
+            set => Set(key, value);
+        }
+
         public void OnTick()
         {
             
         }
 
-        public bool LoadTableFromStringData(string data)
+        public bool LoadDicFromStringData(string data)
         {
             try
             {
