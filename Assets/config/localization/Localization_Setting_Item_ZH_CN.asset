@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Localization_Setting_Item_ZH_CN
   m_EditorClassIdentifier: 
   localizationType: 0
-  localizationName: 
-  localizationFile: 
+  localizationName: "\u4E2D\u6587\u7B80\u4F53"
+  localizationFile: zh_cn

@@ -22,11 +22,16 @@ namespace System.I18n.RunTime
             }
         }
 
-        public static void OnTick()
+        public void Initalize()
+        {
+            Load();
+        }
+
+        public void Update()
         {
             if (m_i18nTextDic != null)
             {
-                m_i18nTextDic.OnTick();
+                m_i18nTextDic.Update();
             }
         }
         
@@ -37,6 +42,7 @@ namespace System.I18n.RunTime
                 Load();
             }
         }
+        
         public static void Load()
         {
             m_i18nTextDic = new();
@@ -47,6 +53,7 @@ namespace System.I18n.RunTime
             if (rawSourceText != null)
             {
                 bool loadSuc = m_i18nTextDic.LoadDicFromStringData(srcFilePath);
+                Debug.Log("charsiew : [Load] : ---------------------- " + loadSuc + "---" + srcFilePath);
             }
             else
             {

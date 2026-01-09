@@ -34,7 +34,7 @@ namespace System.I18n.RunTime
             set => Set(key, value);
         }
 
-        public void OnTick()
+        public void Update()
         {
             
         }

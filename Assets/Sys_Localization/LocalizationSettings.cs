@@ -32,13 +32,14 @@ namespace System.Localization
         
         private const string SRC_ROOT_DIR = "config/localization";
 
-        private static string SETTING_PATH => $"{SRC_ROOT_DIR}/LocalizationSettings";
+        private static string SETTING_PATH => $"{SRC_ROOT_DIR}/Localization_Settings";
 
 
         public static LocalizationSettings GetOrCreateSettings()
         {
             var setting = ResourceManager.LoadAsset<LocalizationSettings>(SETTING_PATH);
-            
+
+            Debug.Log("charsiew : [GetOrCreateSettings] : ---------------------- " + SETTING_PATH);
             //TODO 这里应该加一个自动创建的处理
 
             return setting;

@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.I18n.RunTime;
+using System.Localization;
 using System.RedDot.Example;
 using System.RedDot.RunTime;
 using Sirenix.OdinInspector;
@@ -13,6 +15,10 @@ public class Manager : MonoBehaviour
     
     [BoxGroup("RedDot")] public RedDotModule redDotModule;
     [BoxGroup("RedDot")] public GameObject redDotPrefab;
+    
+    [BoxGroup("I18n")] public I18nTextModule i18nTextModule;
+
+    [BoxGroup("Localization")] public LocalizationModule localizationModule;
     
     private void Awake()
     {
@@ -29,16 +35,20 @@ public class Manager : MonoBehaviour
 
     private void InitModule()
     {
-        redDotModule = new RedDotModule();
-        redDotModule.Initalize("_");
+        redDotModule = new ();
+        redDotModule.Initalize();
+        i18nTextModule = new ();
+        i18nTextModule.Initalize();
+        localizationModule = new();
+        localizationModule.Initalize();
     }
 
     private void UpdateModule()
     {
         if (redDotModule != null)
-        {
             redDotModule.Update();
-        }
+        if (i18nTextModule != null)
+            i18nTextModule.Update();
     }
 
     //TODO 这部分应该放在游戏业务逻辑管理器中。
