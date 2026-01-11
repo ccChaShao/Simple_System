@@ -14,6 +14,7 @@ public class Manager : MonoBehaviour
     public static Manager Instance => m_Instance;
     
     [BoxGroup("RedDot")] public RedDotModule redDotModule;
+        
     [BoxGroup("RedDot")] public GameObject redDotPrefab;
     
     [BoxGroup("I18n")] public I18nTextModule i18nTextModule;

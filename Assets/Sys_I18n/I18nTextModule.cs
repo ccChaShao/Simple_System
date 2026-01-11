@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Localization;
 using System.Resource;
 using System.Text;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace System.I18n.RunTime
 {
+    [Serializable]
     public class I18nTextModule
     {
         public const string SRC_ROOT_DIR = "config/i18n";
@@ -52,8 +54,8 @@ namespace System.I18n.RunTime
             string rawSourceText = LoadRawSourceText(srcFilePath);
             if (rawSourceText != null)
             {
-                bool loadSuc = m_i18nTextDic.LoadDicFromStringData(srcFilePath);
-                Debug.Log("charsiew : [Load] : ---------------------- " + loadSuc + "---" + srcFilePath);
+                bool loadSuc = m_i18nTextDic.LoadDicFromStringData(rawSourceText);
+                Debug.Log("charsiew : [Load] : ---------------------- " + rawSourceText);
             }
             else
             {
@@ -78,12 +80,14 @@ namespace System.I18n.RunTime
             return String.Empty;
         }
 
+        [Button("获取文本",ButtonSizes.Large)]
         public static string GetText(string key)
         {
             EnsureLoad();
             return m_i18nTextDic[key];
         }
 
+        [Button("设置文本",ButtonSizes.Large)]
         public static void SetText(string key, string value)
         {
             EnsureLoad();

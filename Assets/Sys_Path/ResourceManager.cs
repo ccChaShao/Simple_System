@@ -1,6 +1,7 @@
 using System.IO;
 using UnityEditor;
-using UnityEngine.Device;
+using UnityEngine;
+using Application = UnityEngine.Device.Application;
 
 namespace System.Resource
 {
@@ -14,10 +15,11 @@ namespace System.Resource
         
         public static T LoadAsset_Editor<T>(string path) where T : UnityEngine.Object
         {
-            string fullPath = Path.GetFullPath(Application.dataPath + "/../" + path);
+            string assetPath = $"Assets/{path}";
+            string fullPath = Path.GetFullPath(Application.dataPath + "/" + path);
             if (File.Exists(fullPath))
             {
-                return AssetDatabase.LoadAssetAtPath<T>(fullPath);
+                return AssetDatabase.LoadAssetAtPath<T>(assetPath);
             }
 
             return null;

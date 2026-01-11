@@ -9,6 +9,7 @@ namespace System.RedDot.RunTime
     /// <summary>
     /// 红点模块——红点系统核心模块
     /// </summary>
+    [Serializable]
     public class RedDotModule
     {
         public string pattern;

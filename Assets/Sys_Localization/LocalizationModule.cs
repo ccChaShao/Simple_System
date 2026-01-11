@@ -1,5 +1,6 @@
 namespace System.Localization
 {
+    [Serializable]
     public class LocalizationModule
     {
         private static LocalizationType m_localizationType;

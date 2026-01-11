@@ -337,7 +337,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31b40fa4b7888349bbf282442473bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redDotPrefab: {fileID: 0}
+  redDotModule:
+    pattern: _
+  redDotPrefab: {fileID: 8080715238779680108, guid: 68e6ee3544b173f408986b1cce8ce1e6, type: 3}
 --- !u!4 &1770369686
 Transform:
   m_ObjectHideFlags: 0
