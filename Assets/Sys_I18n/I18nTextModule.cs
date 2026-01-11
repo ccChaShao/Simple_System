@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Localization;
@@ -55,7 +56,7 @@ namespace System.I18n.RunTime
             if (rawSourceText != null)
             {
                 bool loadSuc = m_i18nTextDic.LoadDicFromStringData(rawSourceText);
-                Debug.Log("charsiew : [Load] : ---------------------- " + rawSourceText);
+                Debug.Log("charsiew : [Load] : ---------------------- \n" + rawSourceText);
             }
             else
             {
@@ -93,5 +94,13 @@ namespace System.I18n.RunTime
             EnsureLoad();
             m_i18nTextDic[key] = value;
         }
+
+#if UNITY_EDITOR
+        public static string GetTextOnEditor(string key)
+        {
+            EnsureLoad();
+            return m_i18nTextDic[key];
+        }
+#endif
     }
 }

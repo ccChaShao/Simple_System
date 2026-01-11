@@ -6,6 +6,8 @@ using System.Localization;
 using System.RedDot.Example;
 using System.RedDot.RunTime;
 using Sirenix.OdinInspector;
+using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 public class Manager : MonoBehaviour
@@ -32,6 +34,8 @@ public class Manager : MonoBehaviour
     private void Update()
     {
         UpdateModule();
+        
+        InitTextMeshPro();
     }
 
     private void InitModule()
@@ -69,4 +73,27 @@ public class Manager : MonoBehaviour
         item.SetData(dotBindData.path, dotBindData.type, dotBindData.anchorPreset);
         item.RefreshView(node);
     }
+
+    private static void InitTextMeshPro()
+    {
+        TMP_Text.i18nGetFunc = i18nKey =>
+        {
+            string i18nVal = I18nTextModule.i18nTextDic[i18nKey];
+            if (!string.IsNullOrEmpty(i18nVal))
+            {
+                return i18nVal;
+            }
+            return i18nKey;
+        };
+    }
+
+#if UNITY_EDITOR
+    [InitializeOnLoadMethod]
+    static void InitializeOnLoad()
+    {
+        InitTextMeshPro();
+        
+        Debug.Log("编辑器事件注册完成");
+    }
+#endif
 }
