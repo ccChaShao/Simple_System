@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u654C\u65B9\u6709\u7A7A\u4E2D\u5355\u4F4D\u65F6\uFF0C\u5E94\u7559\u610F\u4E0A\u9635\u961F\u4F0D\u4E2D\uFF0C\u662F\u5426\u6709\u5BF9\u7A7A\u80FD\u529B\u7684\u5355\u4F4D"
+  m_text: "\u9664\u66B4\u5B89\u826F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_i18nKey: '@LoadingTips/tips[tips:12]'
+  m_i18nKey: '@achieve/achieveTask[name:14102]'
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u654C\u65B9\u6709\u7A7A\u4E2D\u5355\u4F4D\u65F6\uFF0C\u5E94\u7559\u610F\u4E0A\u9635\u961F\u4F0D\u4E2D\uFF0C\u662F\u5426\u6709\u5BF9\u7A7A\u80FD\u529B\u7684\u5355\u4F4D"
+  m_text: "\u9F0E\u5B9A\u4E7E\u5764"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_i18nKey: '@LoadingTips/tips[tips:12]'
+  m_i18nKey: '@achieve/achieveTask[name:14104]'
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
@@ -384,7 +384,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 190.6952}
-  m_SizeDelta: {x: 361.20264, y: 381.3904}
+  m_SizeDelta: {x: 700.2932, y: 381.3904}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7449904737513884504
 CanvasRenderer:
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -549,7 +549,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u654C\u65B9\u6709\u7A7A\u4E2D\u5355\u4F4D\u65F6\uFF0C\u5E94\u7559\u610F\u4E0A\u9635\u961F\u4F0D\u4E2D\uFF0C\u662F\u5426\u6709\u5BF9\u7A7A\u80FD\u529B\u7684\u5355\u4F4D"
+  m_text: '@achieve/achieveTask[name:14302]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -584,7 +584,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -615,7 +615,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_i18nKey: '@LoadingTips/tips[tips:12]'
+  m_i18nKey: '@achieve/achieveTask[name:14302]'
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
