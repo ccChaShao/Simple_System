@@ -8,53 +8,70 @@ namespace System.Localization
     [CreateAssetMenu(menuName = "System/Localization/CreateSetting")]
     public class LocalizationSettings : ScriptableObject
     {
-        private static LocalizationSettings m_instance;
-        
+        static LocalizationSettings _instance;
         public static LocalizationSettings Instance
         {
             get
             {
-                if (m_instance == null)
+                if (_instance == null)
                 {
-                    m_instance = GetOrCreateSettings();
+                    _instance = GetOrCreateSettings();
                 }
-                return m_instance;
+                return _instance;
             }
+            private set => _instance = value;
         }
         
-        [LabelText("默认语言类型")]
-        public LocalizationType defaultLocalizationType;
-
-        public LocalizationSettingItem defaultLocalizationItem => GetLacalizationItem(defaultLocalizationType);
+        [LabelText("当前语言类型"), OnValueChanged(nameof(LocalizationTypeChanged))]
+        public SystemLanguage localizationType;
         
         [LabelText("语言配置") ,ListDrawerSettings]
         public List<LocalizationSettingItem> localeSettings = new();
         
-        private const string SRC_ROOT_DIR = "config/localization";
+        public LocalizationSettingItem localizationItem => GetLacalizationItem(localizationType);
+        
+        public Action OnLocalizationTypeChanged = null;
+        
+        private static string SRC_ROOT_DIR = "config/localization";
 
         private static string SETTING_PATH => $"{SRC_ROOT_DIR}/Localization_Settings.asset";
-
-
-        public static LocalizationSettings GetOrCreateSettings()
+        
+        private static LocalizationSettings GetOrCreateSettings()
         {
-            var setting = ResourceManager.LoadAsset<LocalizationSettings>(SETTING_PATH);
-            //TODO 这里应该加一个自动创建的处理
+            LocalizationSettings settings = ResourceManager.LoadAsset<LocalizationSettings>(SETTING_PATH);
 
-            return setting;
+            if (!settings)
+            {
+                settings = CreateInstance<LocalizationSettings>();
+                
+                LocalizationSettingItem settingItem = CreateInstance<LocalizationSettingItem>();
+                settingItem.language = SystemLanguage.Chinese;
+                settingItem.languageName = "中文";
+                settingItem.languageFile = "zh_cn";
+                
+                settings.localeSettings.Add(settingItem);
+            }
+        
+            return settings;
         }
 
-        public LocalizationSettingItem GetLacalizationItem(LocalizationType type)
+        public LocalizationSettingItem GetLacalizationItem(SystemLanguage type)
         {
             for (int i = 0; i < localeSettings.Count; i++)
             {
                 var item = localeSettings[i];
-                if (item.localizationType == type)
+                if (item.language == type)
                 {
                     return item;
                 }
             }
 
             return null;
+        }
+
+        public void LocalizationTypeChanged()
+        {
+            OnLocalizationTypeChanged?.Invoke();
         }
     }
 }

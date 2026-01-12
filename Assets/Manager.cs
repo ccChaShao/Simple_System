@@ -87,13 +87,24 @@ public class Manager : MonoBehaviour
         };
     }
 
+    private static void OnSystemLanguageChanged()
+    {
+        // 重新解析字库
+        I18nTextModule.ReLoad();
+        // 字体重新加载
+        TMPro_EventManager.SYSTEM_LANGUAGE_CHANGED_EVENT.Call();
+    }
+
 #if UNITY_EDITOR
     [InitializeOnLoadMethod]
-    static void InitializeOnLoad()
+    private static void InitializeOnLoad()
     {
         InitTextMeshPro();
+
+        LocalizationModule.settings.OnLocalizationTypeChanged -= OnSystemLanguageChanged;
+        LocalizationModule.settings.OnLocalizationTypeChanged += OnSystemLanguageChanged;
         
-        Debug.Log("编辑器事件注册完成");
+        Debug.Log("========编辑器事件注册完成========");
     }
 #endif
 }

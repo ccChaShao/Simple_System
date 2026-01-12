@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Object = UnityEngine.Object;
 
 
 namespace TMPro
@@ -33,6 +35,8 @@ namespace TMPro
         public static readonly FastAction<bool, Object> TEXTMESHPRO_UGUI_PROPERTY_EVENT = new FastAction<bool, Object>();
 
         public static readonly FastAction<Object> TEXT_CHANGED_EVENT = new FastAction<Object>();
+
+        public static readonly FastAction SYSTEM_LANGUAGE_CHANGED_EVENT = new();
 
         //public static readonly FastAction WILL_RENDER_CANVASES = new FastAction();
 

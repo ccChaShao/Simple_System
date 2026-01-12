@@ -6,10 +6,10 @@ namespace System.Localization
     [CreateAssetMenu(menuName = "System/Localization/CreateSettingItem")]
     public class LocalizationSettingItem : ScriptableObject
     {
-        [LabelText("语言类型")] public LocalizationType localizationType;
+        [LabelText("类型")] public SystemLanguage language;
 
-        [LabelText("语言显示名称")] public string localizationName;
+        [LabelText("显示名称")] public string languageName;
         
-        [LabelText("文件名称")] public string localizationFile;
+        [LabelText("文件名称")] public string languageFile;
     }
 }

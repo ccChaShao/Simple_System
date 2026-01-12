@@ -27,7 +27,7 @@ namespace System.I18n.RunTime
 
         public void Initalize()
         {
-            Load();
+            ReLoad();
         }
 
         public void Update()
@@ -42,16 +42,20 @@ namespace System.I18n.RunTime
         {
             if (m_i18nTextDic == null)
             {
-                Load();
+                ReLoad();
             }
         }
         
-        public static void Load()
+        public static void ReLoad()
         {
             m_i18nTextDic = new();
-            //TODO 这里应该拿实时的才对，临时DEBUG用默认的。
-            LocalizationSettingItem defaultItem = LocalizationSettings.Instance.defaultLocalizationItem;
-            string srcFilePath = GetSrcFilePath(defaultItem.localizationFile);
+            LocalizationSettingItem item = LocalizationModule.GetLocalizationSettingItem();
+            if (!item)
+            {
+                Debug.LogWarning("[ReLoad] : 暂不支持该目标语言类型。");
+                return;
+            }
+            string srcFilePath = GetSrcFilePath(item.languageFile);
             string rawSourceText = LoadRawSourceText(srcFilePath);
             if (rawSourceText != null)
             {
@@ -94,13 +98,5 @@ namespace System.I18n.RunTime
             EnsureLoad();
             m_i18nTextDic[key] = value;
         }
-
-#if UNITY_EDITOR
-        public static string GetTextOnEditor(string key)
-        {
-            EnsureLoad();
-            return m_i18nTextDic[key];
-        }
-#endif
     }
 }

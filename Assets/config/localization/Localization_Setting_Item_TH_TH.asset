@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1727a6f113e84be6b19da8ddd5fba35f, type: 3}
   m_Name: Localization_Setting_Item_TH_TH
   m_EditorClassIdentifier: 
-  localizationType: 3
-  localizationName: "\u6CF0\u6587"
-  localizationFile: th_th
+  language: 36
+  languageName: "\u6CF0\u8BED"
+  languageFile: th_th

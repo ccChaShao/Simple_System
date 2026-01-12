@@ -119,6 +119,9 @@ namespace TMPro
 
             // Load the font asset and assign material to renderer.
             LoadFontAsset();
+            
+            // try update i18n
+            TryUpdateI18nText();
 
             // Allocate our initial buffers.
             if (m_TextProcessingArray == null)
@@ -139,9 +142,6 @@ namespace TMPro
                 for (int i = 0; i < subTextObjectCount; i++)
                     m_subTextObjects[i + 1] = subTextObjects[i];
             }
-            
-            // update i18n
-            TryUpdateI18nText();
 
             // Set flags to ensure our text is parsed and redrawn.
             m_havePropertiesChanged = true;
@@ -171,8 +171,11 @@ namespace TMPro
                 TMPro_EventManager.TEXT_STYLE_PROPERTY_EVENT.Add(ON_TEXT_STYLE_CHANGED);
                 TMPro_EventManager.COLOR_GRADIENT_PROPERTY_EVENT.Add(ON_COLOR_GRADIENT_CHANGED);
                 TMPro_EventManager.TMP_SETTINGS_PROPERTY_EVENT.Add(ON_TMP_SETTINGS_CHANGED);
+                TMPro_EventManager.SYSTEM_LANGUAGE_CHANGED_EVENT.Add(ON_SYSTEM_LANGUAGE_CHANGED);
 
                 UnityEditor.PrefabUtility.prefabInstanceUpdated += OnPrefabInstanceUpdate;
+                
+                
                 #endif
                 m_isRegisteredForEvents = true;
             }
@@ -259,6 +262,7 @@ namespace TMPro
             TMPro_EventManager.COLOR_GRADIENT_PROPERTY_EVENT.Remove(ON_COLOR_GRADIENT_CHANGED);
             TMPro_EventManager.TMP_SETTINGS_PROPERTY_EVENT.Remove(ON_TMP_SETTINGS_CHANGED);
             TMPro_EventManager.RESOURCE_LOAD_EVENT.Remove(ON_RESOURCES_LOADED);
+            TMPro_EventManager.SYSTEM_LANGUAGE_CHANGED_EVENT.Remove(ON_SYSTEM_LANGUAGE_CHANGED);
 
             UnityEditor.PrefabUtility.prefabInstanceUpdated -= OnPrefabInstanceUpdate;
             #endif
@@ -338,6 +342,10 @@ namespace TMPro
             }
         }
 
+        void ON_SYSTEM_LANGUAGE_CHANGED()
+        {
+            TryUpdateI18nText();
+        }
 
         // Event received when TMP resources have been loaded.
         void ON_RESOURCES_LOADED()
