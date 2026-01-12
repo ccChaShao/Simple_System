@@ -409,10 +409,12 @@ namespace TMPro.EditorUtilities
 
         protected void DrawI18nText()
         {
+            GUILayout.Label(new GUIContent("<b>I18n Settings</b>"), TMP_UIStyleManager.sectionHeader);
+            
             // i18n key
             string previousValue = m_i18nKey.stringValue;
             
-            string newVal = EditorGUILayout.TextField("i18n输入框：", m_i18nKey.stringValue);
+            string newVal = EditorGUILayout.TextField("i18n_key 输入框：", m_i18nKey.stringValue);
 
             if (previousValue != newVal)
             {
@@ -425,8 +427,10 @@ namespace TMPro.EditorUtilities
             {
                 return;
             }
-
-            EditorGUILayout.LabelField($"I18n内容 : {m_TextProp.stringValue}");
+            
+            GUIStyle richTextStyle = new GUIStyle(EditorStyles.label);
+            richTextStyle.richText = true;
+            EditorGUILayout.LabelField("i18n_value 内容框：",$"<color=#0099cc>{m_TextProp.stringValue}</color>", richTextStyle);
         }
 
         protected void DrawTextInput()
