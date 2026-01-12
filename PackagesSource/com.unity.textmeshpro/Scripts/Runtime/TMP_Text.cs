@@ -1579,7 +1579,7 @@ namespace TMPro
 
         public static Func<string, string> i18nGetFunc = null;
 
-        public string UpdateI18nText()
+        public void TryUpdateI18nText()
         {
             if (i18nGetFunc != null)
             {
@@ -1589,8 +1589,6 @@ namespace TMPro
                     this.text = i18nVal;
                 }
             }
-
-            return m_i18nKey;
         }
         
         #endregion

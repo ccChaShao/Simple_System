@@ -139,6 +139,9 @@ namespace TMPro
                 for (int i = 0; i < subTextObjectCount; i++)
                     m_subTextObjects[i + 1] = subTextObjects[i];
             }
+            
+            // update i18n
+            TryUpdateI18nText();
 
             // Set flags to ensure our text is parsed and redrawn.
             m_havePropertiesChanged = true;
