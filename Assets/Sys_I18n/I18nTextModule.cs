@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Localization;
 using System.Resource;
 using System.Text;
+using LitJson;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -55,12 +57,57 @@ namespace System.I18n.RunTime
                 Debug.LogWarning("[ReLoad] : 暂不支持该目标语言类型。");
                 return;
             }
+            
+            string srcFileJsonPath = GetSrcJsonFilePath(item.languageFile);
             string srcFilePath = GetSrcFilePath(item.languageFile);
+            
+            // 先检查目标JSON
+            bool reLoadBytes = true;
+            do
+            {
+                if (File.Exists(srcFileJsonPath))
+                {
+                    string dicJsonStr = File.ReadAllText(srcFileJsonPath);
+                    I18nJsonData jsonData = JsonMapper.ToObject<I18nJsonData>(dicJsonStr);
+                    if (string.IsNullOrEmpty(jsonData.MD5))
+                    {
+                        break;
+                    }
+
+                }
+            } while (false);
+            
+            
+            //TODO MD5检查
             string rawSourceText = LoadRawSourceText(srcFilePath);
             if (rawSourceText != null)
             {
                 bool loadSuc = m_i18nTextDic.LoadDicFromStringData(rawSourceText);
-                Debug.Log("charsiew : [Load] : ---------------------- \n" + rawSourceText);
+                if (loadSuc)
+                {
+                    Debug.Log("charsiew : [ReLoad] : ---------------------- \n" + rawSourceText);
+                    try
+                    {
+                        string directory = Path.GetDirectoryName(srcFileJsonPath);
+                        if (!Directory.Exists(directory))
+                        {
+                            Directory.CreateDirectory(directory);
+                        }
+
+                        I18nJsonData jsonData = new I18nJsonData();
+                        jsonData.MD5 = "11111111";
+                        jsonData.i18nDic = m_i18nTextDic.i18nDic;
+                        
+                        string dicJsonStr = JsonMapper.ToJson(jsonData);
+                        
+                        File.WriteAllText(srcFileJsonPath, dicJsonStr);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogError(e.Message);
+                        throw;
+                    }
+                }
             }
             else
             {
@@ -71,6 +118,11 @@ namespace System.I18n.RunTime
         public static string GetSrcFilePath(string locale)
         {
             return SRC_ROOT_DIR + $"/{locale}/texts.bytes";
+        }
+
+        public static string GetSrcJsonFilePath(string locale)
+        {
+            return Path.Combine(Application.persistentDataPath, $"{locale}.json");
         }
 
         public static string LoadRawSourceText(string path)

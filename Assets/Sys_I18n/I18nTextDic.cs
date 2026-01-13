@@ -2,28 +2,21 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using LitJson;
 using UnityEngine;
 
 namespace System.I18n.RunTime
 {
-    public struct I18nTextItem
-    {
-        public string key;
-        public string text;
-
-        public I18nTextItem(string key, string text)
-        {
-            this.key = key;
-            this.text = text;
-        }
-    }
-    
     public class I18nTextDic
     {
         public const uint TICK_INTERVAL = 10;
         public const string KEY_SPLITTER = "|^|";
         
+        private string MD5 = String.Empty;
+
         private Dictionary<string, I18nTextItem> m_i18nDic = new();
+        
+        public Dictionary<string, I18nTextItem> i18nDic => m_i18nDic;
 
         // 后续用于清理闲置字符
         private float m_gcTickTime = 0.0f;
@@ -35,9 +28,11 @@ namespace System.I18n.RunTime
             set => Set(key, value);
         }
 
-        public void Update()
+        public void Update() { }
+
+        public void LoadDicFromJsonData(string json)
         {
-            
+            m_i18nDic = JsonMapper.ToObject<Dictionary<string, I18nTextItem>>(json);
         }
 
         public bool LoadDicFromStringData(string data)
