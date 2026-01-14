@@ -7,6 +7,7 @@ using System.Resource;
 using System.Text;
 using LitJson;
 using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
 
 namespace System.I18n.RunTime
@@ -58,56 +59,64 @@ namespace System.I18n.RunTime
                 return;
             }
             
-            string srcFileJsonPath = GetSrcJsonFilePath(item.languageFile);
-            string srcFilePath = GetSrcFilePath(item.languageFile);
+            string srcFileAssetsPath = GetSrcFilePath(item.languageFile);
             
-            // 先检查目标JSON
-            bool reLoadBytes = true;
-            do
-            {
-                if (File.Exists(srcFileJsonPath))
-                {
-                    string dicJsonStr = File.ReadAllText(srcFileJsonPath);
-                    I18nJsonData jsonData = JsonMapper.ToObject<I18nJsonData>(dicJsonStr);
-                    if (string.IsNullOrEmpty(jsonData.MD5))
-                    {
-                        break;
-                    }
-
-                }
-            } while (false);
+            // string srcFileJsonPath = Path.Combine(Application.persistentDataPath, $"{item.languageFile}.json");
+            // string srcFilePath = Path.Combine(Application.dataPath, srcFileAssetsPath);
+            // string srcFileMD5 = MD5FileValidator.ComputeFileMD5(srcFilePath);
             
+            // // 先检查本地JSON
+            // if (File.Exists(srcFileJsonPath))
+            // {
+            //     string dicJsonStr = File.ReadAllText(srcFileJsonPath);
+            //     I18nJsonData jsonData = JsonMapper.ToObject<I18nJsonData>(dicJsonStr);
+            //     bool isValid = string.Equals(jsonData.MD5, srcFileMD5, StringComparison.OrdinalIgnoreCase);
+            //     if (isValid)
+            //     {
+            //         Debug.Log("charsiew : [ReLoad] : ------------------------ MD5检查通过。");
+            //         m_i18nTextDic.SetI18nDic(jsonData.i18nDic);
+            //         return;
+            //     }
+            // }
             
-            //TODO MD5检查
-            string rawSourceText = LoadRawSourceText(srcFilePath);
+            // 重新解析bytes文件
+            string rawSourceText = LoadRawSourceText(srcFileAssetsPath);
             if (rawSourceText != null)
             {
                 bool loadSuc = m_i18nTextDic.LoadDicFromStringData(rawSourceText);
-                if (loadSuc)
-                {
-                    Debug.Log("charsiew : [ReLoad] : ---------------------- \n" + rawSourceText);
-                    try
-                    {
-                        string directory = Path.GetDirectoryName(srcFileJsonPath);
-                        if (!Directory.Exists(directory))
-                        {
-                            Directory.CreateDirectory(directory);
-                        }
-
-                        I18nJsonData jsonData = new I18nJsonData();
-                        jsonData.MD5 = "11111111";
-                        jsonData.i18nDic = m_i18nTextDic.i18nDic;
-                        
-                        string dicJsonStr = JsonMapper.ToJson(jsonData);
-                        
-                        File.WriteAllText(srcFileJsonPath, dicJsonStr);
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.LogError(e.Message);
-                        throw;
-                    }
-                }
+                Debug.Log("charsiew : [ReLoad] : ---------------------- \n" + rawSourceText);
+                // if (loadSuc)
+                // {
+                //     try
+                //     {
+                //         string directory = Path.GetDirectoryName(srcFileJsonPath);
+                //         if (!Directory.Exists(directory))
+                //         {
+                //             Directory.CreateDirectory(directory);
+                //         }
+                //
+                //         I18nJsonData jsonData = new I18nJsonData();
+                //         jsonData.MD5 = srcFileMD5;
+                //         jsonData.i18nDic = m_i18nTextDic.i18nDic;
+                //         
+                //         StringBuilder sb = new StringBuilder();
+                //         JsonWriter writer = new JsonWriter(sb);
+                //         
+                //         // 关键设置：启用美化打印
+                //         writer.PrettyPrint = true;
+                //         // 可选设置：自定义缩进（例如使用2个空格）
+                //         writer.IndentValue = 2;
+                //         
+                //         JsonMapper.ToJson(jsonData, writer);
+                //
+                //         File.WriteAllText(srcFileJsonPath, sb.ToString(), Encoding.UTF8);
+                //     }
+                //     catch (Exception e)
+                //     {
+                //         Debug.LogError(e.Message);
+                //         throw;
+                //     }
+                // }
             }
             else
             {
@@ -120,11 +129,6 @@ namespace System.I18n.RunTime
             return SRC_ROOT_DIR + $"/{locale}/texts.bytes";
         }
 
-        public static string GetSrcJsonFilePath(string locale)
-        {
-            return Path.Combine(Application.persistentDataPath, $"{locale}.json");
-        }
-
         public static string LoadRawSourceText(string path)
         {
             TextAsset textAsset = ResourceManager.LoadAsset<TextAsset>(path);
@@ -135,6 +139,16 @@ namespace System.I18n.RunTime
             }
 
             return String.Empty;
+        }
+
+        public static string LoadRawSourceText(TextAsset textAsset)
+        {
+            if (textAsset != null)
+            {
+                Encoding.UTF8.GetString(textAsset.bytes);
+            }
+
+            return string.Empty;
         }
 
         [Button("获取文本",ButtonSizes.Large)]

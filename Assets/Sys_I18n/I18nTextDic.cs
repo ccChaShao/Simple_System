@@ -11,8 +11,6 @@ namespace System.I18n.RunTime
     {
         public const uint TICK_INTERVAL = 10;
         public const string KEY_SPLITTER = "|^|";
-        
-        private string MD5 = String.Empty;
 
         private Dictionary<string, I18nTextItem> m_i18nDic = new();
         
@@ -29,11 +27,6 @@ namespace System.I18n.RunTime
         }
 
         public void Update() { }
-
-        public void LoadDicFromJsonData(string json)
-        {
-            m_i18nDic = JsonMapper.ToObject<Dictionary<string, I18nTextItem>>(json);
-        }
 
         public bool LoadDicFromStringData(string data)
         {
