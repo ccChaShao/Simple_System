@@ -35,12 +35,14 @@ namespace System.RedDot.Example
             m_Image = GetComponentInChildren<Image>();
             m_Text = GetComponentInChildren<TextMeshProUGUI>();
             m_CanvasGroup = GetComponent<CanvasGroup>();
-            m_RedDotView = new ();
         }
 
         private void OnDestroy()
         {
-            m_RedDotView.OnExit();
+            if (m_RedDotView != null)
+            {
+                m_RedDotView.OnExit();
+            }
         }
 
         public void SetData(string path ,RedDotType type = RedDotType.Number, RedDotAnchorPreset anchorPreset = RedDotAnchorPreset.TopRight)
@@ -48,7 +50,9 @@ namespace System.RedDot.Example
             this.type = type;
             this.path = path;
             this.anchorPreset = anchorPreset;
-            m_RedDotView.SetData(m_RedDotModule, path, OnRedDotDataUpdate);
+            
+            m_RedDotView = new(path, type, anchorPreset);
+            m_RedDotView.SetData(m_RedDotModule, OnRedDotDataUpdate);
             m_RedDotView.OnEnter();
         }
 

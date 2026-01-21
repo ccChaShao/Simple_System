@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine.Events;
 
 namespace System.RedDot.RunTime
@@ -5,9 +6,14 @@ namespace System.RedDot.RunTime
     /// <summary>
     /// 红点表现类——用于存储节点的表现数据
     /// </summary>
+    [Serializable]
     public class RedDotView
     {
-        public string path;
+        [TitleGroup("属性")] public string path;
+        
+        [TitleGroup("属性")] public RedDotType type;
+
+        [TitleGroup("属性")] public RedDotAnchorPreset anchorPreset;
         
         private RedDotNode m_ReddotNode;
         
@@ -15,9 +21,15 @@ namespace System.RedDot.RunTime
         
         private UnityAction<RedDotNode> m_OnRedDotUpdate;
 
-        public void SetData(RedDotModule module, string path, UnityAction<RedDotNode> onRedDotUpdate)
+        public RedDotView(string path, RedDotType type, RedDotAnchorPreset anchorPreset)
         {
             this.path = path;
+            this.type = type;
+            this.anchorPreset = anchorPreset;
+        }
+
+        public void SetData(RedDotModule module, UnityAction<RedDotNode> onRedDotUpdate)
+        {
             this.m_ReddotNode = module.GerOrCreateRedDotNode(path, false);
             this.m_RedDotModule = module;
             this.m_OnRedDotUpdate = onRedDotUpdate;
