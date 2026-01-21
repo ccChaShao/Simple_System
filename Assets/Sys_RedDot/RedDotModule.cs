@@ -176,7 +176,7 @@ namespace System.RedDot.RunTime
 
         public void AddRedDotNodeViewCallBack(string path, UnityAction<RedDotNode> onRedDotUpdate)
         {
-            RedDotNode node = GetRedDotNode(path);
+            RedDotNode node = GerOrCreateRedDotNode(path, false);
             if (node == null)
                 return;
             node.onRedDotUpdate.AddListener(onRedDotUpdate);
@@ -191,7 +191,7 @@ namespace System.RedDot.RunTime
 
         public void RemoveRedDotNodeViewCallBack(string path, UnityAction<RedDotNode> onRedDotUpdate)
         {
-            RedDotNode node = GetRedDotNode(path);
+            RedDotNode node = GerOrCreateRedDotNode(path, false);
             if (node == null)
                 return;
             node.onRedDotUpdate.RemoveListener(onRedDotUpdate);
