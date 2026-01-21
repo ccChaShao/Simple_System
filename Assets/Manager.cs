@@ -60,9 +60,7 @@ public class Manager : MonoBehaviour
     public void BindRedDot(RedDotBindData dotBindData)
     {
         // 创建数据
-        RedDotNode node = redDotModule.CreateRedDotNode(dotBindData.path, false);
-        if (node == null)
-            return;
+        RedDotNode node = redDotModule.GerOrCreateRedDotNode(dotBindData.path, false);
         // 创建红点
         RedDotItem item = dotBindData.rectTransform.GetComponentInChildren<RedDotItem>(); // 仅在该节点查询
         if (item == null)

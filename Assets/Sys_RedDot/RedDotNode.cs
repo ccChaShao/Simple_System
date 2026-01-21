@@ -11,7 +11,8 @@ namespace System.RedDot.RunTime
     /// </summary>
     public class RedDotNode
     {
-        public string path { get; private set; }
+        // path => red dot key
+        public string path { get; private set; }    
         public int count { get; private set; }
 
         // 父节点

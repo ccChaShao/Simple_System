@@ -76,8 +76,9 @@ namespace System.RedDot.RunTime
             if (string.IsNullOrEmpty(path))
                 return null;
 
-            if (m_nodeDic.ContainsKey(path))
-                return m_nodeDic[path];
+            //TODO 这里遵循语义，会覆盖已有的红点，假如想要获取/创建，请用“GerOrCreateRedDotNode”。
+            // if (m_nodeDic.ContainsKey(path))
+            //     return m_nodeDic[path];
             
             string[] keys = SplitAndTrim(path, pattern).ToArray();
             
@@ -109,6 +110,17 @@ namespace System.RedDot.RunTime
             }
 
             return null;
+        }
+
+        public RedDotNode GerOrCreateRedDotNode(string path, bool withoutNodifyIfCreate)
+        {
+            RedDotNode node = GetRedDotNode(path);
+            if (node == null)
+            {
+                node = CreateRedDotNode(path, withoutNodifyIfCreate);
+            }
+
+            return node;
         }
 
         public bool SetRedDotNodeCount(string path, int count)
