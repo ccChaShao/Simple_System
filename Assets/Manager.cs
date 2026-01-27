@@ -1,11 +1,13 @@
 using System.I18n.RunTime;
 using System.Localization;
+using MySystem.I18n.RunTime;
 using MySystem.RedDot.RunTime;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
 using MySystem.RedDot.Example;
+using MySystem.Localization;
 
 public class Manager : MonoBehaviour
 {

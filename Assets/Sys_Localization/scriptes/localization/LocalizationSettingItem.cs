@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace System.Localization
+namespace MySystem.Localization
 {
     [CreateAssetMenu(menuName = "System/Localization/CreateSettingItem")]
     public class LocalizationSettingItem : ScriptableObject

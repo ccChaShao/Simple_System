@@ -1,16 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.I18n.RunTime;
 using System.IO;
 using System.Localization;
 using System.Resource;
 using System.Text;
 using LitJson;
+using MySystem.Localization;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 
-namespace System.I18n.RunTime
+namespace MySystem.I18n.RunTime
 {
     [Serializable]
     public class I18nTextModule

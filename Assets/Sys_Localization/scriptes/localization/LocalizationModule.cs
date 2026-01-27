@@ -1,8 +1,7 @@
-using Sirenix.OdinInspector;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
-namespace System.Localization
+namespace MySystem.Localization
 {
     [Serializable]
     public class LocalizationModule
