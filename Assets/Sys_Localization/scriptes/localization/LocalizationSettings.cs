@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace MySystem.Localization
 {
-    [CreateAssetMenu(menuName = "System/Localization/CreateSetting")]
+    [CreateAssetMenu(fileName = "New Localization Setting", menuName = "MySystem/Localization/CreateSetting")]
     public class LocalizationSettings : ScriptableObject
     {
         static LocalizationSettings _instance;

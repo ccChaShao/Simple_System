@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MySystem.Localization
 {
-    [CreateAssetMenu(menuName = "System/Localization/CreateSettingItem")]
+    [CreateAssetMenu(fileName = "New Localization Item", menuName = "MySystem/Localization/CreateSettingItem")]
     public class LocalizationSettingItem : ScriptableObject
     {
         [LabelText("类型")] public SystemLanguage language;
