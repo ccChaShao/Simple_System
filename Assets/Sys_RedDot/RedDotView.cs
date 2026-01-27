@@ -1,7 +1,8 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine.Events;
 
-namespace System.RedDot.RunTime
+namespace MySystem.RedDot.RunTime
 {
     /// <summary>
     /// 红点表现类——用于存储节点的表现数据

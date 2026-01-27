@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using System.RedDot.RunTime;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
+using MySystem.RedDot.RunTime;
 
 namespace System.RedDot.Example
 {

@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace System.RedDot.RunTime
+namespace MySystem.RedDot.RunTime
 {
     /// <summary>
     /// 红点模块——红点系统核心模块

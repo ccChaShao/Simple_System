@@ -1,8 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace System.RedDot.RunTime
+namespace MySystem.RedDot.RunTime
 {
     public class RedDotUpdate : UnityEvent<RedDotNode> { }
         

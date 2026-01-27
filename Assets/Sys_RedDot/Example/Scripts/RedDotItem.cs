@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.RedDot.RunTime;
+using MySystem.RedDot.RunTime;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace System.RedDot.Example
+namespace MySystem.RedDot.Example
 {
     public class RedDotItem : MonoBehaviour
     {
