@@ -20,7 +20,7 @@ namespace MySystem.ImageFont
 
         public Sprite GetSprite(char character)
         {
-            if (m_SpriteDict == null)
+            if (m_SpriteDict == null || m_SpriteDict.Count <= 0)
             {
                 m_SpriteDict = new();
                 foreach (var mapping in mappings)
