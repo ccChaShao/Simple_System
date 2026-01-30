@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MySystem.ImageFont
@@ -14,15 +15,17 @@ namespace MySystem.ImageFont
             public Sprite sprite;
         }
     
+        [OnValueChanged(nameof(RebuildSpriteDict))]
         public List<ChatSprioteMapping> mappings = new ();
 
         private Dictionary<char, Sprite> m_SpriteDict = new();
 
         public Sprite GetSprite(char character)
         {
-            if (m_SpriteDict == null || m_SpriteDict.Count <= 0)
+            if (m_SpriteDict.Count <= 0)
             {
-                m_SpriteDict = new();
+                m_SpriteDict.Clear();
+                
                 foreach (var mapping in mappings)
                 {
                     if (!m_SpriteDict.ContainsKey(mapping.character))
@@ -34,6 +37,19 @@ namespace MySystem.ImageFont
 
             m_SpriteDict.TryGetValue(character, out Sprite sprite);
             return sprite;
+        }
+
+        private void RebuildSpriteDict()
+        {
+            m_SpriteDict.Clear();
+            
+            foreach (var mapping in mappings)
+            {
+                if (!m_SpriteDict.ContainsKey(mapping.character))
+                {
+                    m_SpriteDict[mapping.character] = mapping.sprite;
+                }
+            }
         }
     }
 }

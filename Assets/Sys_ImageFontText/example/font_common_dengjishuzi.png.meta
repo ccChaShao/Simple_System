@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 99cf66078ebd0ba4f94dd46c82c255f5
+guid: 5462ea5d240dffb4fa3e489e9905a537
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,139 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: img_common_word_huoyuedu_0
+      name: font_common_dengjishuzi_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 3
-        width: 37
-        height: 48
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dd6a5052c7503b54b9fb23a8d97dd96f
-      internalID: -1529044273
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: img_common_word_huoyuedu_1
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 2
-        width: 28
-        height: 50
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9e4f9320674130429fe4d0be5d0bce9
-      internalID: -2130519598
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: img_common_word_huoyuedu_2
-      rect:
-        serializedVersion: 2
-        x: 88
-        y: 3
-        width: 35
-        height: 48
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 004820efbc3e9aa40a4a60b9a799b6dd
-      internalID: 1150951513
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: img_common_word_huoyuedu_3
-      rect:
-        serializedVersion: 2
-        x: 130
-        y: 3
-        width: 34
-        height: 48
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dd8c4c4b0ae92dc499a2159da2e3c25d
-      internalID: -150702970
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: img_common_word_huoyuedu_4
-      rect:
-        serializedVersion: 2
-        x: 169
-        y: 2
-        width: 41
-        height: 50
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eaad483da562fee43a0fd7b16f289ade
-      internalID: -1505420091
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: img_common_word_huoyuedu_5
-      rect:
-        serializedVersion: 2
-        x: 215
-        y: 2
-        width: 33
-        height: 49
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 61e48b7fc050f394ca88264ed41a8b74
-      internalID: 1638398403
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: img_common_word_huoyuedu_6
-      rect:
-        serializedVersion: 2
-        x: 255
+        x: 0
         y: 0
-        width: 36
-        height: 54
+        width: 57
+        height: 69
       alignment: 1
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,62 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29f77f82a51c9f948b846424e76e0ac5
-      internalID: -554409386
+      spriteID: fd614d60fe6700740ade642bd1b479ae
+      internalID: 1353363105
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: img_common_word_huoyuedu_7
+      name: font_common_dengjishuzi_1
       rect:
         serializedVersion: 2
-        x: 297
-        y: 1
-        width: 36
-        height: 51
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e26a1eba917784a4aa7a0cfff013bad4
-      internalID: 2083727258
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: img_common_word_huoyuedu_8
-      rect:
-        serializedVersion: 2
-        x: 340
-        y: 2
-        width: 34
-        height: 51
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a01db70da8bffc24c8bf362d67a42cae
-      internalID: -1042401310
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: img_common_word_huoyuedu_9
-      rect:
-        serializedVersion: 2
-        x: 381
+        x: 57
         y: 0
-        width: 36
-        height: 53
+        width: 57
+        height: 69
       alignment: 1
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,8 +132,176 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37501fa0b25f80e43ac2b3d6a9b799e6
-      internalID: -1374693575
+      spriteID: eb8bef4608b18ff47b6bb56fbab97508
+      internalID: -1130952530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_common_dengjishuzi_2
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 0
+        width: 57
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 900b5f9eced1fac46810117d25ea9e15
+      internalID: 1570270389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_common_dengjishuzi_3
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 0
+        width: 57
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e87cd040ec8c9b34b8481ab4de7ba78d
+      internalID: -1280516198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_common_dengjishuzi_4
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 0
+        width: 57
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94ffb88daee1f2041bb74a0ea59b1015
+      internalID: -40239456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_common_dengjishuzi_5
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 0
+        width: 57
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6972a3c8f0f4a84691eeae56de4a6e9
+      internalID: -851229994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_common_dengjishuzi_6
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 0
+        width: 57
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4fba0a26ad36d2499f562c94578c467
+      internalID: -1042943491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_common_dengjishuzi_7
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 0
+        width: 57
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0e3d86ccebfdc643ba7e87a4a580d94
+      internalID: -1085491831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_common_dengjishuzi_8
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 0
+        width: 57
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8de45e5b5db61dd418940f349be41d61
+      internalID: 302289425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_common_dengjishuzi_9
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 0
+        width: 57
+        height: 69
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d48f5beaa3d806442aa038f330d5867b
+      internalID: 332115346
       vertices: []
       indices: 
       edges: []
@@ -317,16 +317,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      img_common_word_huoyuedu_0: -1529044273
-      img_common_word_huoyuedu_1: -2130519598
-      img_common_word_huoyuedu_2: 1150951513
-      img_common_word_huoyuedu_3: -150702970
-      img_common_word_huoyuedu_4: -1505420091
-      img_common_word_huoyuedu_5: 1638398403
-      img_common_word_huoyuedu_6: -554409386
-      img_common_word_huoyuedu_7: 2083727258
-      img_common_word_huoyuedu_8: -1042401310
-      img_common_word_huoyuedu_9: -1374693575
+      font_common_dengjishuzi_0: 1353363105
+      font_common_dengjishuzi_1: -1130952530
+      font_common_dengjishuzi_2: 1570270389
+      font_common_dengjishuzi_3: -1280516198
+      font_common_dengjishuzi_4: -40239456
+      font_common_dengjishuzi_5: -851229994
+      font_common_dengjishuzi_6: -1042943491
+      font_common_dengjishuzi_7: -1085491831
+      font_common_dengjishuzi_8: 302289425
+      font_common_dengjishuzi_9: 332115346
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

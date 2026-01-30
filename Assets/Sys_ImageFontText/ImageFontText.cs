@@ -12,15 +12,25 @@ namespace MySystem.ImageFont
         [SerializeField] private ImageFontData m_FontData;
         public ImageFontData fontData
         {
-            get { return m_FontData; }
-            set { m_FontData = value; SetAllDirty();}
+            get => m_FontData;
+            set { 
+                m_FontData = value;
+                // 字库内容变动，全dirty；
+                SetAllDirty();
+            }
         }
 
         [SerializeField, TextArea(3, 10)] private string m_Text = "";
         public string text
         {
-            get {  return m_Text; }
-            set { m_Text = value; SetAllDirty();}
+            get => m_Text;
+            set
+            {
+                m_Text = value; 
+                // 文本改变，布局和顶点都可能变；
+                SetVerticesDirty();
+                SetLayoutDirty();
+            }
         }
 
         [SerializeField] private float m_CharSpacing = 0.0f;

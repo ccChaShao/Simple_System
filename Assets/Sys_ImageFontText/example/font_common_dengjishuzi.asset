@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 557b9356a2658f34e95256b2eded9b90, type: 3}
+  m_Name: font_common_dengjishuzi
+  m_EditorClassIdentifier: 
+  mappings:
+  - character: 48
+    sprite: {fileID: 1353363105, guid: 5462ea5d240dffb4fa3e489e9905a537, type: 3}
+  - character: 49
+    sprite: {fileID: -1130952530, guid: 5462ea5d240dffb4fa3e489e9905a537, type: 3}
+  - character: 50
+    sprite: {fileID: 1570270389, guid: 5462ea5d240dffb4fa3e489e9905a537, type: 3}
+  - character: 51
+    sprite: {fileID: -1280516198, guid: 5462ea5d240dffb4fa3e489e9905a537, type: 3}
+  - character: 52
+    sprite: {fileID: -40239456, guid: 5462ea5d240dffb4fa3e489e9905a537, type: 3}
+  - character: 53
+    sprite: {fileID: -851229994, guid: 5462ea5d240dffb4fa3e489e9905a537, type: 3}
+  - character: 54
+    sprite: {fileID: -1042943491, guid: 5462ea5d240dffb4fa3e489e9905a537, type: 3}
+  - character: 55
+    sprite: {fileID: -1085491831, guid: 5462ea5d240dffb4fa3e489e9905a537, type: 3}
+  - character: 56
+    sprite: {fileID: 302289425, guid: 5462ea5d240dffb4fa3e489e9905a537, type: 3}
+  - character: 57
+    sprite: {fileID: 332115346, guid: 5462ea5d240dffb4fa3e489e9905a537, type: 3}
