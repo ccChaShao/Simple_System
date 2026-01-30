@@ -94,18 +94,22 @@ namespace MySystem.ImageFont
                 currentX += charWidth;
             }
         }
-
+        
+        /// <summary>
+        /// 添加正方形
+        /// </summary>
         private void AddQuad(VertexHelper vh, Vector3 bottomLeft, Vector3 topLeft, Vector3 topRight, Vector3 bottomRight, Color32 color, Vector4 uv)
         {
+            // 1. 记录当前的定点数量
             int vertIndex = vh.currentVertCount;   
             
-            // 1. UV定点映射（左下开始）
+            // 2. UV定点映射（左下开始）
             vh.AddVert(bottomLeft, color, new Vector2(uv.x, uv.y));     // 左下
             vh.AddVert(topLeft, color, new Vector2(uv.x, uv.w));        // 左上
             vh.AddVert(topRight, color, new Vector2(uv.z, uv.w));       // 右上
             vh.AddVert(bottomRight, color, new Vector2(uv.z, uv.y));    // 右下
             
-            // 2. 添加字体三角形（左上开始）                     // 记录当前起始顶点索引
+            // 3. 使用上面的顶点添加三角形
             vh.AddTriangle(vertIndex, vertIndex + 1, vertIndex + 2);    // 三角形 1
             vh.AddTriangle(vertIndex + 2, vertIndex + 3, vertIndex);    // 三角形 2
         }
