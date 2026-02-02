@@ -121,10 +121,7 @@ namespace MySystem.ImageFont
         public void StartTextTest() {
             if (m_TestMode == TestMode.Text)
             {
-                // 清理之前的测试
-                CleanupTest();
-                // 重置性能数据
-                ClearTestValue();
+                ClearAll();
                 return;
             }
             StartCoroutine(RunTest(TestMode.Text, textPrefab, m_TextPool));
@@ -133,10 +130,7 @@ namespace MySystem.ImageFont
         public void StartTextMeshProTest() {
             if (m_TestMode == TestMode.TextMeshProUGUI)
             {
-                // 清理之前的测试
-                CleanupTest();
-                // 重置性能数据
-                ClearTestValue();
+                ClearAll();
                 return;
             }
             StartCoroutine(RunTest(TestMode.TextMeshProUGUI, textMeshProPrefab, m_TextMeshProPool));
@@ -145,10 +139,7 @@ namespace MySystem.ImageFont
         public void StartMeshTextTest() {
             if (m_TestMode == TestMode.MeshText)
             {
-                // 清理之前的测试
-                CleanupTest();
-                // 重置性能数据
-                ClearTestValue();
+                ClearAll();
                 return;
             }
             StartCoroutine(RunTest(TestMode.MeshText, meshTextPrefab, m_MeshTextPool));
@@ -162,14 +153,6 @@ namespace MySystem.ImageFont
             
             // 数据更新
             m_TestMode = mode;
-        
-            // // 预生成对象池
-            // for (int i = 0; i < textCount; i++)
-            // {
-            //     GameObject obj = Instantiate(prefab, Vector3.zero, Quaternion.identity, insContent);
-            //     obj.SetActive(false);
-            //     pool.Enqueue(obj);
-            // }
         
             // 分批生成文本
             for (int i = 0; i < textCount; i++) {
@@ -192,15 +175,12 @@ namespace MySystem.ImageFont
         
         private void SpawnText(GameObject prefab, Queue<GameObject> pool, int index) {
             GameObject textObj = GetFromPool(prefab, pool);
-        
-            Vector3 position = new Vector3(
-                Random.Range(-Screen.width * 0.4f, Screen.width * 0.4f),
-                Random.Range(-Screen.height * 0.4f, 0),
-                0
-            );
-        
             RectTransform rt = textObj.GetComponent<RectTransform>();
-            rt.anchoredPosition = position;
+            
+            rt.anchoredPosition = new Vector2(
+                Random.Range(-Screen.width/2, Screen.width/2),
+                Random.Range(-Screen.height/2, 0)
+            );
             textObj.SetActive(true);
         
             // 设置文本内容
@@ -262,13 +242,8 @@ namespace MySystem.ImageFont
             }
         }
         
-        private void ClearPool(Queue<GameObject> pool) {
-            while (pool.Count > 0) {
-                Destroy(pool.Dequeue());
-            }
-        }
-        
         private void CleanupTest() {
+            
             foreach (var textObj in m_ActiveTexts) {
                 Destroy(textObj);
             }
@@ -277,6 +252,12 @@ namespace MySystem.ImageFont
             ClearPool(m_TextPool);
             ClearPool(m_TextMeshProPool);
             ClearPool(m_MeshTextPool);
+            
+            void ClearPool(Queue<GameObject> pool) {
+                while (pool.Count > 0) {
+                    Destroy(pool.Dequeue());
+                }
+            }
         }
 
         private void ClearTestValue()
@@ -286,6 +267,13 @@ namespace MySystem.ImageFont
             m_AvgFPS = 0f;
             m_TotalFrams = 0;
             m_TestStartTime = Time.time;
+        }
+
+        private void ClearAll()
+        {
+            CleanupTest();
+            ClearTestValue();
+            StopAllCoroutines();
         }
 
         private void UpdatePerformanceStats()
