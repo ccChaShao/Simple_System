@@ -45,21 +45,25 @@ namespace MySystem.ImageFont
         {
             get
             {
-                if (m_FontData == null || m_FontData.mappings.Count == 0)
+                if (m_FontData != null)
                 {
-                    return s_WhiteTexture;
-                }
-
-                foreach (var mapping in m_FontData.mappings)
-                {
-                    if (mapping.sprite != null && mapping.sprite.texture != null)
+                    foreach (var mapping in m_FontData.mappings)
                     {
-                        return mapping.sprite.texture;
+                        if (mapping.sprite != null && mapping.sprite.texture != null)
+                        {
+                            return mapping.sprite.texture;
+                        }
                     }
                 }
                 
                 return s_WhiteTexture;
             }
+        }
+
+        protected override void OnValidate()
+        {
+            base.OnValidate();
+            SetAllDirty();
         }
 
         // 核心方法：UGUI再需要重建网格时自动调用此方法
