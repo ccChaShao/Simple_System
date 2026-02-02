@@ -24,6 +24,7 @@ namespace MySystem.ImageFont
         public float testDuration = 10.0f;
         public float textMoveSpeed = 50.0f;
         public Camera mainCamera;
+        public RectTransform insContent;
 
         [Header("预制体引用")] 
         public GameObject textPrefab;
@@ -111,7 +112,10 @@ namespace MySystem.ImageFont
             {
                 return;    
             }
-            resultText.text = $"当前模式: {m_TestMode}\nFPS: {m_Fps:F1}\n最小FPS: {m_MinFPS:F1}\n平均FPS: {m_AvgFPS:F1}\nDrawCalls: {m_DrawCallCount}\n活动文本: {m_ActiveTexts.Count}";
+
+            float avgFps = m_TestMode == TestMode.None ? 0 : m_AvgFPS;
+            
+            resultText.text = $"当前模式: {m_TestMode}\nFPS: {m_Fps:F1}\n最小FPS: {m_MinFPS:F1}\n平均FPS: {avgFps:F1}\nDrawCalls: {m_DrawCallCount}\n活动文本: {m_ActiveTexts.Count}";
         } 
     
         public void StartTextTest() {
@@ -153,19 +157,19 @@ namespace MySystem.ImageFont
         private IEnumerator RunTest(TestMode mode, GameObject prefab, Queue<GameObject> pool) {
             // 清理之前的测试
             CleanupTest();
-        
             // 重置性能数据
             ClearTestValue();
             
             // 数据更新
             m_TestMode = mode;
         
-            // 预生成对象池
-            for (int i = 0; i < textCount; i++) {
-                GameObject obj = Instantiate(prefab, Vector3.zero, Quaternion.identity);
-                obj.SetActive(false);
-                pool.Enqueue(obj);
-            }
+            // // 预生成对象池
+            // for (int i = 0; i < textCount; i++)
+            // {
+            //     GameObject obj = Instantiate(prefab, Vector3.zero, Quaternion.identity, insContent);
+            //     obj.SetActive(false);
+            //     pool.Enqueue(obj);
+            // }
         
             // 分批生成文本
             for (int i = 0; i < textCount; i++) {
@@ -195,7 +199,8 @@ namespace MySystem.ImageFont
                 0
             );
         
-            textObj.transform.position = position;
+            RectTransform rt = textObj.GetComponent<RectTransform>();
+            rt.anchoredPosition = position;
             textObj.SetActive(true);
         
             // 设置文本内容
@@ -218,13 +223,14 @@ namespace MySystem.ImageFont
         private void UpdateActiveTexts() {
             for (int i = m_ActiveTexts.Count - 1; i >= 0; i--) {
                 GameObject textObj = m_ActiveTexts[i];
+                RectTransform rt = textObj.GetComponent<RectTransform>();
             
                 // 移动文本
-                textObj.transform.Translate(Vector3.up * textMoveSpeed * Time.deltaTime);
-            
+                rt.anchoredPosition = new(rt.anchoredPosition.x, rt.anchoredPosition.y + textMoveSpeed * Time.deltaTime);
+                
                 // 检查是否移出屏幕
-                Vector3 screenPos = mainCamera.WorldToViewportPoint(textObj.transform.position);
-                if (screenPos.y > 1.2f) {
+                // Vector3 screenPos = mainCamera.WorldToViewportPoint(textObj.transform.position);
+                if (rt.anchoredPosition.y > Screen.height * 1.2 / 2) {
                     m_ActiveTexts.RemoveAt(i);
                     ReturnToPool(textObj);
                 }
@@ -235,7 +241,8 @@ namespace MySystem.ImageFont
             if (pool.Count > 0) {
                 return pool.Dequeue();
             }
-            return Instantiate(prefab, Vector3.zero, Quaternion.identity);
+
+            return Instantiate(prefab, Vector3.zero, Quaternion.identity, insContent);
         }
         
         private void ReturnToPool(GameObject obj) {
