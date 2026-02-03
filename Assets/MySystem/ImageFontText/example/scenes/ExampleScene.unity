@@ -480,10 +480,6 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 342118420}
-    - target: {fileID: 5125168262363765182, guid: a867cc0b98c493349a8b4cca93cdcabd, type: 3}
-      propertyPath: spawnInterval
-      value: 0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 6479713833153562460, guid: a867cc0b98c493349a8b4cca93cdcabd, type: 3}
       propertyPath: m_Name
       value: TextPerformanceTest
