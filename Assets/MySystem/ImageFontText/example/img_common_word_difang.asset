@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557b9356a2658f34e95256b2eded9b90, type: 3}
   m_Name: img_common_word_difang
   m_EditorClassIdentifier: 
+  defaultLineHeight: 56
   mappings:
   - character: 48
     sprite: {fileID: 295448597, guid: b019811e88abeae4a97d6722089643e4, type: 3}

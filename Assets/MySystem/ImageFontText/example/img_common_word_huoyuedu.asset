@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557b9356a2658f34e95256b2eded9b90, type: 3}
   m_Name: img_common_word_huoyuedu
   m_EditorClassIdentifier: 
+  defaultLineHeight: 54
   mappings:
   - character: 48
     sprite: {fileID: -1529044273, guid: 99cf66078ebd0ba4f94dd46c82c255f5, type: 3}

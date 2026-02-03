@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557b9356a2658f34e95256b2eded9b90, type: 3}
   m_Name: font_common_dengjishuzi
   m_EditorClassIdentifier: 
+  defaultLineHeight: 69
   mappings:
   - character: 48
     sprite: {fileID: 1353363105, guid: 5462ea5d240dffb4fa3e489e9905a537, type: 3}

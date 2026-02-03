@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 557b9356a2658f34e95256b2eded9b90, type: 3}
+  m_Name: img_common_word_VIP
+  m_EditorClassIdentifier: 
+  defaultLineHeight: 51
+  mappings:
+  - character: 48
+    sprite: {fileID: 63240825, guid: 474d9430908c82d41a699456b6521a34, type: 3}
+  - character: 49
+    sprite: {fileID: 1431660057, guid: 474d9430908c82d41a699456b6521a34, type: 3}
+  - character: 50
+    sprite: {fileID: 1455014143, guid: 474d9430908c82d41a699456b6521a34, type: 3}
+  - character: 51
+    sprite: {fileID: 1124687390, guid: 474d9430908c82d41a699456b6521a34, type: 3}
+  - character: 52
+    sprite: {fileID: 1029293653, guid: 474d9430908c82d41a699456b6521a34, type: 3}
+  - character: 53
+    sprite: {fileID: -1554345619, guid: 474d9430908c82d41a699456b6521a34, type: 3}
+  - character: 54
+    sprite: {fileID: -142342568, guid: 474d9430908c82d41a699456b6521a34, type: 3}
+  - character: 55
+    sprite: {fileID: 1997387210, guid: 474d9430908c82d41a699456b6521a34, type: 3}
+  - character: 56
+    sprite: {fileID: -1892354212, guid: 474d9430908c82d41a699456b6521a34, type: 3}
+  - character: 57
+    sprite: {fileID: 351457100, guid: 474d9430908c82d41a699456b6521a34, type: 3}
