@@ -31,6 +31,9 @@ namespace MySystem.ImageFont
         public GameObject textMeshProPrefab;
         public GameObject meshTextPrefab;
 
+        [Header("资源引用")] 
+        public List<ImageFontData> randomFontDatas = new();
+
         [Header("UI引用")] 
         public Slider countSlider;
         public TextMeshProUGUI resultText;
@@ -49,7 +52,6 @@ namespace MySystem.ImageFont
         private float m_Fps;
         private float m_FrameTimer;
         private int m_FrameCount;
-        private int m_DrawCallCount;
         private float m_TestStartTime;
         private float m_MinFPS = float.MaxValue; // 最大帧率
         private float m_AvgFPS = 0.0f; // 最小帧率
@@ -115,7 +117,7 @@ namespace MySystem.ImageFont
 
             float avgFps = m_TestMode == TestMode.None ? 0 : m_AvgFPS;
             
-            resultText.text = $"当前模式: {m_TestMode}\nFPS: {m_Fps:F1}\n最小FPS: {m_MinFPS:F1}\n平均FPS: {avgFps:F1}\nDrawCalls: {m_DrawCallCount}\n活动文本: {m_ActiveTexts.Count}";
+            resultText.text = $"当前模式: {m_TestMode}\nFPS: {m_Fps:F1}\n最小FPS: {m_MinFPS:F1}\n平均FPS: {avgFps:F1}\n活动文本: {m_ActiveTexts.Count}";
         } 
     
         public void StartTextTest() {
@@ -193,7 +195,10 @@ namespace MySystem.ImageFont
                     textObj.GetComponent<TMP_Text>().text = damage.ToString();
                     break;
                 case TestMode.MeshText:
+                    int randomIndex = Random.Range(0, randomFontDatas.Count);
+                    ImageFontData randomFontData = randomFontDatas[randomIndex];
                     textObj.GetComponent<ImageFontText>().text = damage.ToString();
+                    textObj.GetComponent<ImageFontText>().fontData = randomFontData;
                     break;
             }
         
