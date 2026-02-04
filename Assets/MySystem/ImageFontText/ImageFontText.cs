@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace MySystem.ImageFont
 {
     [AddComponentMenu("MySystem/UI/Image Font Text"), ExecuteAlways]
-    public class ImageFontText : MaskableGraphic
+    public class ImageFontText : Graphic
     {
         [SerializeField] private ImageFontData m_FontData;
         public ImageFontData fontData
